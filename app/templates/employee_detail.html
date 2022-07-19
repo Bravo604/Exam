@@ -14,8 +14,10 @@
       <li class="list-group-item">HR Менеджер {{ employee.user.username }}</li>
     </ul>
     <div class="card-body">
-      <a href="#" class="card-link">Удалить запись</a>
-      <a href="#" class="card-link">Изменить запись</a>
+      {% if current_user.is_authenticated %}
+      <a href="{{ url_for('employee_delete', employee_id=employee.id) }}" class="card-link">Удалить запись</a>
+      <a href="{{ url_for('employee_update', employee_id=employee.id) }}" class="card-link">Изменить запись</a>
+      {% endif %}
     </div>
   </div>
 </div>

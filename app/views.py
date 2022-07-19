@@ -2,6 +2,7 @@ from flask import request, render_template, url_for, redirect, flash
 from . import models, forms, db, login_manager
 from flask_login import login_user, logout_user, login_required, current_user
 
+
 # Employee func
 def index():
     employees = models.Employee.query.all()
@@ -14,7 +15,8 @@ def employee_create():
     if request.method == 'POST':
         if form.validate_on_submit():
             employee = models.Employee(fullname=request.form.get('fullname'), phone=request.form.get('phone'),
-                                       short_info=request.form.get('short_info'), experience=request.form.get('experience'),
+                                       short_info=request.form.get('short_info'),
+                                       experience=request.form.get('experience'),
                                        preferred_position=request.form.get('preferred_position'),
                                        user_id=current_user.id)
             db.session.add(employee)
